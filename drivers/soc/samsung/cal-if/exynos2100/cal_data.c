@@ -1,9 +1,9 @@
-#include "../pmucal_common.h"
-#include "../pmucal_cpu.h"
-#include "../pmucal_local.h"
-#include "../pmucal_rae.h"
-#include "../pmucal_system.h"
-#include "../pmucal_powermode.h"
+#include "pmucal/include/pmucal_common.h"
+#include "pmucal/include/pmucal_cpu.h"
+#include "pmucal/include/pmucal_local.h"
+#include "pmucal/include/pmucal_rae.h"
+#include "pmucal/include/pmucal_system.h"
+#include "pmucal/include/pmucal_powermode.h"
 
 #include "flexpmu_cal_cpu_exynos2100.h"
 #include "flexpmu_cal_local_exynos2100.h"
@@ -13,7 +13,7 @@
 #include "flexpmu_cal_define_exynos2100.h"
 
 #if IS_ENABLED(CONFIG_CP_PMUCAL)
-#include "../pmucal_cp.h"
+#include "pmucal/include/pmucal_cp.h"
 #include "pmucal_cp_exynos2100.h"
 #endif
 
