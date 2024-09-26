@@ -73,7 +73,7 @@ static void dbg_snapshot_combine_pmsg(char *buffer, size_t count, unsigned int l
 		tv_kernel = local_clock();
 		rem_nsec = do_div(tv_kernel, 1000000000);
 		time64_to_tm(logger.tv_sec, 0, &tmBuf);
-		logbuf_len = snprintf(logbuf, LOGGER_HEADER_SIZE,
+		logbuf_len = snprintf(logbuf, LOGGER_HEADER_SIZE + 1,
 				"\n[%5llu.%06lu][%d:%16s] %02d-%02d %02d:%02d:%02d.%03d %5d %5d  ",
 				tv_kernel, rem_nsec / 1000, raw_smp_processor_id(), current->comm,
 				tmBuf.tm_mon + 1, tmBuf.tm_mday,

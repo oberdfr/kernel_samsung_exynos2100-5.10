@@ -119,7 +119,7 @@ void fill_report(struct hdd_context *hdd_ctx, char *title,
 	uint32_t *pcl_freqs, uint32_t pcl_len)
 {
 	int i;
-	char buf[5] = {0};
+	char buf[12] = {0};
 	uint8_t sys_pref = 0;
 
 	if (report_idx >= NUMBER_OF_SCENARIO) {
@@ -177,7 +177,7 @@ void fill_report(struct hdd_context *hdd_ctx, char *title,
 	if (pcl_freqs) {
 		qdf_mem_zero(report[report_idx].pcl_freqs,
 				sizeof(report[report_idx].pcl_freqs));
-		snprintf(buf, sizeof(buf), "pcl len %d :", pcl_len);
+		snprintf(buf, sizeof(buf) , "pcl len %d :", pcl_len);
 		strlcat(report[report_idx].pcl_freqs, buf,
 			sizeof(report[report_idx].pcl_freqs));
 		for (i = 0; i < pcl_len && i < NUM_CHANNELS; i++) {
