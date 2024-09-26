@@ -52,7 +52,7 @@ static void __maybe_unused pcie_sysmmu_all_buff_free(int ch_num)
 {
 	pr_err("PCIe SysMMU is NOT Enabled!!!\n");
 }
-static int pcie_sysmmu_add_pcie_fault_handler(void (*func)(int))
+static void pcie_sysmmu_add_pcie_fault_handler(void (*func)(int))
 {
 	pr_err("PCIe SysMMU is NOT Enabled!!!\n");
 }

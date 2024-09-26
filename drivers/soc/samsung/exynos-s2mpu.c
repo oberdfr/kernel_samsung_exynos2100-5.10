@@ -350,6 +350,39 @@ static bool has_s2mpu(unsigned int pd)
 	return (s2mpu_pd_bitmap & BIT_ULL_MASK(pd)) != 0;
 }
 
+uint64_t exynos_set_dev_stage2_ap(const char *subsystem,
+				  uint64_t base,
+				  uint64_t size,
+				  uint32_t ap)
+{
+	uint32_t subsys_idx;
+
+	if (subsystem == NULL) {
+		pr_err("%s: Invalid S2MPU name\n", __func__);
+		return ERROR_INVALID_SUBSYSTEM_NAME;
+	}
+
+	for (subsys_idx = 0; subsys_idx < subsystem_num; subsys_idx++) {
+		if (!strncmp(s2mpu_subsys_list[subsys_idx],
+				subsystem,
+				EXYNOS_MAX_SUBSYSTEM_LEN))
+			break;
+	}
+
+	if (subsys_idx == subsystem_num) {
+		pr_err("%s: DO NOT support %s S2MPU\n",
+				__func__, subsystem);
+		return ERROR_DO_NOT_SUPPORT_SUBSYSTEM;
+	}
+
+	return exynos_hvc(HVC_FID_SET_S2MPU,
+			  subsys_idx,
+			  base,
+			  size,
+			  ap);
+}
+EXPORT_SYMBOL(exynos_set_dev_stage2_ap);
+
 unsigned long exynos_s2mpu_set_stage2_ap(const char *subsystem,
 					 unsigned long base,
 					 unsigned long size,
