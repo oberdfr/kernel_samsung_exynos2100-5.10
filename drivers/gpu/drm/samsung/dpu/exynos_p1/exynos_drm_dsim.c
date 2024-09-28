@@ -40,7 +40,13 @@
 
 #include <video/mipi_display.h>
 
+
+#if IS_ENABLED(CONFIG_SOC_EXYNOS2100)
+#include <dt-bindings/soc/samsung/exynos2100-devfreq.h>
+#else
 #include <dt-bindings/soc/samsung/s5e9925-devfreq.h>
+#endif
+
 #include <soc/samsung/exynos-devfreq.h>
 #if defined(CONFIG_CPU_IDLE)
 #include <soc/samsung/exynos-cpupm.h>

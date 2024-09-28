@@ -20,7 +20,11 @@
 
 #include <soc/samsung/bts.h>
 #include <soc/samsung/exynos-devfreq.h>
+#if IS_ENABLED(CONFIG_SOC_EXYNOS2100)
+#include <dt-bindings/soc/samsung/exynos2100-devfreq.h>
+#else
 #include <dt-bindings/soc/samsung/s5e9925-devfreq.h>
+#endif
 #if defined(CONFIG_CAL_IF)
 #include <soc/samsung/cal-if.h>
 #endif

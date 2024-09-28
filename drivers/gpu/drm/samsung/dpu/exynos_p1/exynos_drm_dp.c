@@ -32,7 +32,11 @@
 #include <media/v4l2-dv-timings.h>
 #include <linux/debugfs.h>
 #include <soc/samsung/exynos-devfreq.h>
+#if IS_ENABLED(CONFIG_SOC_EXYNOS2100)
+#include <dt-bindings/soc/samsung/exynos2100-devfreq.h>
+#else
 #include <dt-bindings/soc/samsung/s5e9925-devfreq.h>
+#endif
 #if defined(CONFIG_CPU_IDLE)
 #include <soc/samsung/exynos-cpupm.h>
 #endif
