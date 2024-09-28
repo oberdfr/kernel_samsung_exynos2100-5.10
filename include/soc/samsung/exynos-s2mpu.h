@@ -175,6 +175,13 @@ unsigned long exynos_s2mpu_set_blacklist(const char *subsystem,
 unsigned long exynos_s2mpu_set_all_blacklist(unsigned long base,
 					     unsigned long size);
 
+#if  IS_ENABLED(CONFIG_EXYNOS_PCIE_GEN2_S2MPU)
+uint64_t exynos_set_dev_stage2_ap(const char *subsystem,
+				  uint64_t base,
+				  uint64_t size,
+				  uint32_t ap);
+#endif
+
 /**
  * exynos_s2mpu_verify_subsystem_fw - Verify the signature of sub-system FW.
  *

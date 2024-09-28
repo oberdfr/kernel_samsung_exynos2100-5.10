@@ -13,7 +13,7 @@
 #include <linux/clk.h>
 #include <linux/io.h>
 #include <linux/platform_device.h>
-#include <sound/vts.h>
+// #include <sound/vts.h>
 
 #include <soc/samsung/exynos-pmu-if.h>
 

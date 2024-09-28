@@ -422,8 +422,9 @@ static ssize_t test_mode_store(struct device *dev,
 {
 	struct usb_interface *intf = to_usb_interface(dev);
 	struct lvs_rh *lvs = usb_get_intfdata(intf);
+	int ret;
 
-	kstrtoint(buf, 0, &lvs->test_mode);
+	ret = kstrtoint(buf, 0, &lvs->test_mode);
 	pr_info("lvs: %s: %d\n", __func__, lvs->test_mode);
 	return count;
 }

@@ -257,7 +257,7 @@ static void *exynos_pcie_dma_alloc_attrs(struct device *dev, size_t size,
 				size, ATTR_RW);
 		if (ret) {
 			pr_err("[harx] ATTR_RW setting fail\n");
-			dma_free_attrs(exynos_pcie->dup_ep_dev, size, coherent_ptr, *dma_handle, attrs);
+			dma_free_attrs(&exynos_pcie->dup_ep_dev, size, coherent_ptr, *dma_handle, attrs);
 			return NULL;
 		}
 	}
