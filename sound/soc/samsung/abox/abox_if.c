@@ -588,6 +588,7 @@ static int abox_uaif_hw_params(struct snd_pcm_substream *substream,
 	return 0;
 }
 
+#if (CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION >= ABOX_SOC_VERSION(4, 0, 0))
 static int abox_uaif_prepare(struct snd_pcm_substream *substream,
 		struct snd_soc_dai *dai)
 {
@@ -616,6 +617,7 @@ static int abox_uaif_prepare(struct snd_pcm_substream *substream,
 
 	return 0;
 }
+#endif
 
 static int abox_uaif_mute_stream(struct snd_soc_dai *dai, int mute, int stream)
 {
@@ -695,7 +697,9 @@ static const struct snd_soc_dai_ops abox_uaif_dai_ops = {
 	.shutdown	= abox_uaif_shutdown,
 	.hw_params	= abox_uaif_hw_params,
 	.hw_free	= abox_if_hw_free,
+#if (CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION >= ABOX_SOC_VERSION(4, 0, 0))
 	.prepare	= abox_uaif_prepare,
+#endif
 	.mute_stream	= abox_uaif_mute_stream,
 };
 
