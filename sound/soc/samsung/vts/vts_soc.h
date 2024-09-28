@@ -31,11 +31,11 @@
 
 /* interface functions */
 void vts_cpu_power(struct device *dev, bool on);
-#if defined(CONFIG_SOC_EXYNOS2100)
-int vts_cpu_enable(bool enable);
-#else 
+// #if defined(CONFIG_SOC_EXYNOS2100)
+// int vts_cpu_enable(bool enable);
+// #else 
 int vts_cpu_enable(struct device *dev, bool enable);
-#endif
+//#endif
 void vts_reset_cpu(struct device *dev);
 
 void vts_pad_retention(bool retention);

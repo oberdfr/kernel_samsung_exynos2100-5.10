@@ -153,6 +153,11 @@ void vts_reset_cpu(struct device *dev)
 	vts_cpu_power(true);
 	vts_cpu_enable(true);
 #endif
+#elif defined(CONFIG_SOC_EXYNOS2100)
+	vts_cpu_enable(false);
+	vts_cpu_power(dev, false);
+	vts_cpu_enable(true);
+	vts_cpu_power(dev, true);
 #else
 	vts_cpu_enable(dev, false);
 	vts_cpu_power(dev, false);

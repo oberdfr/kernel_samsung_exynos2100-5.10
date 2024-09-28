@@ -525,7 +525,7 @@ LINUXINCLUDE    := \
 KBUILD_AFLAGS   := -D__ASSEMBLY__ -fno-PIE
 KBUILD_CFLAGS   := -Wall -Wundef -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE \
-		   -Werror=implicit-function-declaration -Werror=implicit-int -Wno-error=unused-result \
+		   -Werror=implicit-function-declaration -Wno-error=implicit-int -Wno-error=unused-result \
 		   -Werror=return-type -Wno-format-security \
 		   -Werror \
 		   -std=gnu89
