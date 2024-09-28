@@ -739,6 +739,7 @@ static unsigned int abox_uaif_read_format(struct abox_if_data *data)
 	return val;
 }
 
+#if (CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION >= ABOX_SOC_VERSION(4, 0, 0))
 static bool abox_uaif_mic_enabled(struct abox_if_data *data)
 {
 	return snd_soc_component_read(data->cmpnt, UAIF_REG_CTRL0) & ABOX_MIC_ENABLE_MASK;
@@ -864,6 +865,7 @@ static int abox_uaif_spk_auto_fade_in_put(struct snd_kcontrol *kcontrol,
 
 	return 0;
 }
+#endif
 
 static unsigned int abox_if_read_width(struct abox_if_data *data)
 {
@@ -1044,6 +1046,7 @@ static const struct snd_kcontrol_new abox_uaif_controls[] = {
 	SOC_SINGLE("Start FIFO Diff Mic", UAIF_REG_CTRL0,
 			ABOX_START_FIFO_DIFF_MIC_L, 0xf, 0),
 };
+#if (CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION >= ABOX_SOC_VERSION(4, 0, 0))
 static const char * const uaif_func_enum_texts[] = {
 	"Normal", "Pending", "Mute",
 };
@@ -1071,6 +1074,7 @@ static const struct snd_kcontrol_new abox_uaif_vol_controls[] = {
 	SOC_SINGLE("Spk Vol Change", UAIF_REG_SPK_VOL_CHANGE,
 			ABOX_VOL_CHANGE_SPK_L, 0xffffff, 0),
 };
+#endif
 static const struct snd_kcontrol_new abox_if_controls[] = {
 	SOC_SINGLE_EXT("Width", ABOX_IF_WIDTH, 0, 32, 0,
 			abox_if_config_get, abox_if_config_put),
@@ -1149,9 +1153,10 @@ static int abox_if_cmpnt_probe(struct snd_soc_component *cmpnt)
 				ARRAY_SIZE(abox_uaif_controls));
 		snd_soc_dapm_add_routes(dapm, abox_if_routes,
 				ARRAY_SIZE(abox_if_routes));
-		if (ABOX_SOC_VERSION(4, 0, 0) < CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION)
+#if (ABOX_SOC_VERSION(4, 0, 0) < CONFIG_SND_SOC_SAMSUNG_ABOX_VERSION)
 			snd_soc_add_component_controls(cmpnt, abox_uaif_vol_controls,
 					ARRAY_SIZE(abox_uaif_vol_controls));
+#endif
 		break;
 	case ABOX_DSIF:
 		/* nothing to add now */
