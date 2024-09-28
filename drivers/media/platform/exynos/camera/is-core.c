@@ -365,8 +365,10 @@ static void is_print_target_dva(struct is_frame *leader_frame, u32 instance)
 #if IS_ENABLED(ENABLE_BYRP_HDR)
 		IS_PRINT_TARGET_DVA(dva_byrp_hdr);
 #endif
+#if IS_ENABLED(CONFIG_PABLO_V10_1_0)
 		IS_PRINT_TARGET_DVA(dva_byrp_byr);
 		IS_PRINT_TARGET_DVA(dva_byrp_byr_processed);
+#endif
 		IS_PRINT_TARGET_DVA(ixpTargetAddress);
 		IS_PRINT_TARGET_DVA(ixtTargetAddress);
 		IS_PRINT_TARGET_DVA(ixgTargetAddress);
