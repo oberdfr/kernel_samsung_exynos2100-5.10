@@ -6,7 +6,7 @@ obj-$(CONFIG_EXYNOS_BTS)	+= exynos-bts.o
 
 # Chipset Dependent code
 ifdef CONFIG_SOC_EXYNOS2100
-obj-$(CONFIG_EXYNOS_BTS)	+= exynos-btsops2100.0
+obj-$(CONFIG_EXYNOS_BTS)	+= exynos-btsops2100.o
 endif
 
 ifdef CONFIG_SOC_S5E9925
