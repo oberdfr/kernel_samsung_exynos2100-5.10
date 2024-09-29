@@ -363,9 +363,9 @@ uint64_t exynos_set_dev_stage2_ap(const char *subsystem,
 	}
 
 	for (subsys_idx = 0; subsys_idx < subsystem_num; subsys_idx++) {
-		if (!strncmp(s2mpu_subsys_list[subsys_idx],
+		if (!strncmp(subsystem_list[subsys_idx],
 				subsystem,
-				EXYNOS_MAX_SUBSYSTEM_LEN))
+				EXYNOS_MAX_SUBSYSTEM_NAME_LEN))
 			break;
 	}
 
