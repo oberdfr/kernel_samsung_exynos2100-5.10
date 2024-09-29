@@ -61,7 +61,7 @@ static ktime_t rtp_sum_v2f;
 static ktime_t rtp_max_pre;
 static ktime_t rtp_max_cpu;
 static ktime_t rtp_max_v2s;
-static ktime_t rtp_max_gpu;d 
+static ktime_t rtp_max_gpu;
 static ktime_t rtp_max_v2f;
 //static int rtp_last_cputime;
 //static int rtp_last_gputime;
