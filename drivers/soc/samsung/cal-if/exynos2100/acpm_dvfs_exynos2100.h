@@ -1,3 +1,4 @@
+#include <soc/samsung/fvmap.h>
 
 enum acpm_dvfs_id {
 	MIF = ACPM_VCLK_TYPE,

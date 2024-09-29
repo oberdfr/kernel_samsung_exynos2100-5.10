@@ -23,6 +23,28 @@ void __iomem *sram_fvmap_base;
 static int init_margin_table[MAX_MARGIN_ID];
 static int percent_margin_table[MAX_MARGIN_ID];
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+static int margin_mif;
+static int margin_int;
+static int margin_cpucl0;
+static int margin_cpucl1;
+static int margin_cpucl2;
+static int margin_npu;
+static int margin_dsu;
+static int margin_disp;
+static int margin_aud;
+static int margin_cp;
+static int margin_modem;
+static int margin_g3d;
+static int margin_intcam;
+static int margin_cam;
+static int margin_csis;
+static int margin_isp;
+static int margin_vpc;
+static int margin_mfc;
+static int margin_mfc1;
+static int margin_intsci;
+#else
 static int margin_mif;
 static int margin_int;
 static int margin_cpucl0;
@@ -54,9 +76,32 @@ static int margin_hsi0;
 
 static int margin_intg3d;
 static int margin_wlbt;
+#endif
 
 static int volt_offset_percent;
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+module_param(margin_mif, int, 0);
+module_param(margin_int, int, 0);
+module_param(margin_cpucl0, int, 0);
+module_param(margin_cpucl1, int, 0);
+module_param(margin_cpucl2, int, 0);
+module_param(margin_npu, int, 0);
+module_param(margin_dsu, int, 0);
+module_param(margin_disp, int, 0);
+module_param(margin_aud, int, 0);
+module_param(margin_cp, int, 0);
+module_param(margin_modem, int, 0);
+module_param(margin_g3d, int, 0);
+module_param(margin_intcam, int, 0);
+module_param(margin_cam, int, 0);
+module_param(margin_csis, int, 0);
+module_param(margin_isp, int, 0);
+module_param(margin_vpc, int, 0);
+module_param(margin_mfc, int, 0);
+module_param(margin_mfc1, int, 0);
+module_param(margin_intsci, int, 0);
+#else
 module_param(margin_mif, int, 0);
 module_param(margin_int, int, 0);
 module_param(margin_cpucl0, int, 0);
@@ -88,8 +133,34 @@ module_param(margin_hsi0, int, 0);
 
 module_param(margin_intg3d, int, 0);
 module_param(margin_wlbt, int, 0);
+#endif
 module_param(volt_offset_percent, int, 0);
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+void margin_table_init(void)
+{
+	init_margin_table[MARGIN_MIF] = margin_mif;
+	init_margin_table[MARGIN_INT] = margin_int;
+	init_margin_table[MARGIN_CPUCL0] = margin_cpucl0;
+	init_margin_table[MARGIN_CPUCL1] = margin_cpucl1;
+	init_margin_table[MARGIN_CPUCL2] = margin_cpucl2;
+	init_margin_table[MARGIN_NPU] = margin_npu;
+	init_margin_table[MARGIN_DSU] = margin_dsu;
+	init_margin_table[MARGIN_DISP] = margin_disp;
+	init_margin_table[MARGIN_AUD] = margin_aud;
+	init_margin_table[MARGIN_CP] = margin_cp;
+	init_margin_table[MARGIN_MODEM] = margin_modem;
+	init_margin_table[MARGIN_G3D] = margin_g3d;
+	init_margin_table[MARGIN_INTCAM] = margin_intcam;
+	init_margin_table[MARGIN_CAM] = margin_cam;
+	init_margin_table[MARGIN_CSIS] = margin_csis;
+	init_margin_table[MARGIN_ISP] = margin_isp;
+	init_margin_table[MARGIN_VPC] = margin_vpc;
+	init_margin_table[MARGIN_MFC] = margin_mfc;
+	init_margin_table[MARGIN_MFC1] = margin_mfc1;
+	init_margin_table[MARGIN_INTSCI] = margin_intsci;
+}
+#else
 void margin_table_init(void)
 {
 	init_margin_table[MARGIN_MIF] = margin_mif;
@@ -124,6 +195,7 @@ void margin_table_init(void)
 	init_margin_table[MARGIN_INTG3D] = margin_intg3d;
 	init_margin_table[MARGIN_WLBT] = margin_wlbt;
 }
+#endif
 
 int fvmap_set_raw_voltage_table(unsigned int id, int uV)
 {
@@ -191,6 +263,28 @@ static struct kobj_attribute type##_percent =							\
 __ATTR(type##_percent, 0600,									\
 	show_##type##_percent, store_##type##_percent)
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+attr_percent(MARGIN_MIF, mif_margin);
+attr_percent(MARGIN_INT, int_margin);
+attr_percent(MARGIN_CPUCL0, cpucl0_margin);
+attr_percent(MARGIN_CPUCL1, cpucl1_margin);
+attr_percent(MARGIN_CPUCL2, cpucl2_margin);
+attr_percent(MARGIN_NPU, npu_margin);
+attr_percent(MARGIN_DSU, dsu_margin);
+attr_percent(MARGIN_DISP, disp_margin);
+attr_percent(MARGIN_AUD, aud_margin);
+attr_percent(MARGIN_CP, cp_margin);
+attr_percent(MARGIN_MODEM, modem_margin);
+attr_percent(MARGIN_G3D, g3d_margin);
+attr_percent(MARGIN_INTCAM, intcam_margin);
+attr_percent(MARGIN_CAM, cam_margin);
+attr_percent(MARGIN_CSIS, csis_margin);
+attr_percent(MARGIN_ISP, isp_margin);
+attr_percent(MARGIN_VPC, vpc_margin);
+attr_percent(MARGIN_MFC, mfc_margin);
+attr_percent(MARGIN_MFC1, mfc1_margin);
+attr_percent(MARGIN_INTSCI, intsci_margin);
+#else
 attr_percent(MARGIN_MIF, mif_margin);
 attr_percent(MARGIN_INT, int_margin);
 attr_percent(MARGIN_CPUCL0, cpucl0_margin);
@@ -222,7 +316,33 @@ attr_percent(MARGIN_HSI0, hsi0_margin);
 
 attr_percent(MARGIN_INTG3D, intg3d_margin);
 attr_percent(MARGIN_WLBT, wlbt_margin);
+#endif
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+static struct attribute *percent_margin_attrs[] = {
+	&mif_margin_percent.attr,
+	&int_margin_percent.attr,
+	&cpucl0_margin_percent.attr,
+	&cpucl1_margin_percent.attr,
+	&cpucl2_margin_percent.attr,
+	&npu_margin_percent.attr,
+	&dsu_margin_percent.attr,
+	&disp_margin_percent.attr,
+	&aud_margin_percent.attr,
+	&cp_margin_percent.attr,
+	&modem_margin_percent.attr,
+	&g3d_margin_percent.attr,
+	&intcam_margin_percent.attr,
+	&cam_margin_percent.attr,
+	&csis_margin_percent.attr,
+	&isp_margin_percent.attr,
+	&vpc_margin_percent.attr,
+	&mfc_margin_percent.attr,
+	&mfc1_margin_percent.attr,
+	&intsci_margin_percent.attr,
+	NULL,
+};
+#else
 static struct attribute *percent_margin_attrs[] = {
 	&mif_margin_percent.attr,
 	&int_margin_percent.attr,
@@ -257,6 +377,7 @@ static struct attribute *percent_margin_attrs[] = {
 	&wlbt_margin_percent.attr,
 	NULL,
 };
+#endif
 
 static const struct attribute_group percent_margin_group = {
 	.attrs = percent_margin_attrs,

@@ -4,6 +4,31 @@
 #define BLOCK_ADDR_SIZE			(3)
 #define CHILD_ID_NUM			(12)
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+enum margin_id {
+	MARGIN_MIF,
+	MARGIN_INT,
+	MARGIN_CPUCL0,
+	MARGIN_CPUCL1,
+	MARGIN_CPUCL2,
+	MARGIN_NPU,
+	MARGIN_DSU,
+	MARGIN_DISP,
+	MARGIN_AUD,
+	MARGIN_CP,
+	MARGIN_MODEM,
+	MARGIN_G3D,
+	MARGIN_INTCAM,
+	MARGIN_CAM,
+	MARGIN_CSIS,
+	MARGIN_ISP,
+	MARGIN_VPC,
+	MARGIN_MFC,
+	MARGIN_MFC1,
+	MARGIN_INTSCI,
+	MAX_MARGIN_ID,
+};
+#else
 enum margin_id {
 	MARGIN_MIF,
 	MARGIN_INT,
@@ -39,6 +64,7 @@ enum margin_id {
 	MARGIN_WLBT,
 	MAX_MARGIN_ID,
 };
+#endif
 
 /* FV(Frequency Voltage MAP) */
 struct fvmap_header {
