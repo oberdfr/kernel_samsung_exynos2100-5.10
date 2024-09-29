@@ -15,6 +15,10 @@
 #define EWF_CAM_BLK0             (0x6110)	//NOCL1C, NOCL0, CSIS, CSTAT
 #define EWF_CAM_BLK1             (0x200000f)	//MIF0/1/2/3, ALLCSIS
 #endif
+#if defined(CONFIG_SOC_EXYNOS2100)
+#define EWF_GRP_CAM             (51)
+#define EWF_CAM_BLK             (0xF0000894)    //BUS0, BUS2, CORE, CSIS, MIF0, MIF1, MIF2, MIF3
+#endif
 
 #if defined(CONFIG_CMU_EWF) || defined(CONFIG_CMU_EWF_MODULE)
 extern int get_cmuewf_index(struct device_node *np, unsigned int *index);
