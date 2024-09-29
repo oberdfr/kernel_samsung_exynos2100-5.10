@@ -201,7 +201,7 @@ struct flexpmu_apm_req_info {
 void __iomem *rtc_base;
 
 
-#if defined(CONFIG_SOC_S5E9925)
+#if (defined(CONFIG_SOC_S5E9925) || defined(CONFIG_SOC_EXYNOS2100))
 #define MIF_MASTER_MAX		4
 char *flexpmu_master_name[MIF_MASTER_MAX] = {
 	"MIF_AP",
