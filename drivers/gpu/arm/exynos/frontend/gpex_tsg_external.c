@@ -61,7 +61,7 @@ static ktime_t rtp_sum_v2f;
 static ktime_t rtp_max_pre;
 static ktime_t rtp_max_cpu;
 static ktime_t rtp_max_v2s;
-static ktime_t rtp_max_gpu;
+static ktime_t rtp_max_gpu;d 
 static ktime_t rtp_max_v2f;
 //static int rtp_last_cputime;
 //static int rtp_last_gputime;
@@ -74,16 +74,16 @@ static ktime_t rtp_vsync_interval;
 static int rtp_vsync_swapcall_counter;
 static int rtp_vsync_frame_counter;
 static int rtp_vsync_counter;
-static unsigned int rtp_target_frametime;
+//static unsigned int rtp_target_frametime;
 
 static int migov_vsync_frame_counter;
 static unsigned int migov_vsync_counter;
 static ktime_t migov_last_updated_vsync_time;
 
-static unsigned int rtp_targettime_margin;
-static unsigned int rtp_workload_margin;
+//static unsigned int rtp_targettime_margin;
+//static unsigned int rtp_workload_margin;
 //static unsigned int rtp_decon_time;
-static int rtp_shortterm_comb_ctrl;
+//static int rtp_shortterm_comb_ctrl;
 //static int rtp_shortterm_comb_ctrl_manual;
 
 static int rtp_powertable_size[NUM_OF_DOMAIN];
@@ -345,16 +345,9 @@ void exynos_stats_get_run_times(u64 *times)
 		times[V2FMAX] = (last_frame.max_v2f > RENDERINGTIME_MAX_TIME) ?
 			RENDERINGTIME_MAX_TIME : last_frame.max_v2f;
 
-		times[NRSWAP] = last_frame.nrq;
-		times[NRFRAME] = rtp_vsync_frame_counter;
-		times[NRFRAMEDROP] = rtp_vsync_counter - rtp_vsync_frame_counter;
 		rtp_vsync_frame_counter = 0;
 		rtp_vsync_counter = 0;
 
-		times[TARGETFRAMETIME] = rtp_target_frametime;
-		times[STC_CONFIG] =	(u64)(rtp_targettime_margin & 0xffff) |
-							((u64)(rtp_workload_margin & 0xff) << 16) |
-							((u64)(rtp_shortterm_comb_ctrl & 0xff) << 24);
 	} else {
 		int i;
 
