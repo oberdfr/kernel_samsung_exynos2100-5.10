@@ -38,6 +38,20 @@
 #include <soc/samsung/exynos-pmu-if.h>
 #include <soc/samsung/exynos-el3_mon.h>
 
+#define VTS_SOC_VERSION(m, n, r) (((m) << 16) | ((n) << 8) | (r))
+
+#include "../vts/vts.h"
+#if (VTS_SOC_VERSION(3, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v3.h"
+#elif (VTS_SOC_VERSION(2, 1, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v2_1.h"
+#elif (VTS_SOC_VERSION(2, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v2.h"
+#elif (VTS_SOC_VERSION(1, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v1.h"
+#else
+#include "vts_soc_v1.h"
+#endif
 #include "slif_util.h"
 #include "slif_nm.h"
 

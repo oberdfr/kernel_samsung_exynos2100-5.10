@@ -1595,16 +1595,16 @@ int slif_soc_dma_en(int enable,
 	slif_info(dev, "ctrl(0x%08x)\n", ctrl);
 
 	/* PAD configuration */
-#if 0
+#if IS_ENABLED(CONFIG_SOC_EXYNOS2100)
 	slif_soc_set_sel_pad(data, enable);
+	slif_dmic_aud_en(data->dev_vts, enable);
+	slif_dmic_if_en(data->dev_vts, enable);
 #else
 	vts_clk_aud_set_rate(data->dev_vts, 5);
 	vts_set_sel_pad(data->dev_vts, enable);
 	if (IS_ENABLED(CONFIG_SOC_S5E9925))
 		abox_write_sysreg(0x7, 0x520);
 #endif
-	/* slif_dmic_aud_en(data->dev_vts, enable); */
-	/* slif_dmic_if_en(data->dev_vts, enable); */
 
 	/* HACK : MOVE to resume */
 	if (enable)

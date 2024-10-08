@@ -18,7 +18,23 @@
 #include <sound/samsung/vts.h>
 #include <sound/samsung/abox.h>
 
-#include "slif_lif.h"
+#define VTS_SOC_VERSION(m, n, r) (((m) << 16) | ((n) << 8) | (r))
+
+#include "../vts/vts.h"
+#include "../vts/vts_dbg.h"
+#if (VTS_SOC_VERSION(3, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v3.h"
+#elif (VTS_SOC_VERSION(2, 1, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v2_1.h"
+#elif (VTS_SOC_VERSION(2, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v2.h"
+#elif (VTS_SOC_VERSION(1, 0, 0) <= CONFIG_SND_SOC_SAMSUNG_VTS_VERSION)
+#include "../vts/vts_soc_v1.h"
+#else
+#include "vts_soc_v1.h"
+#endif
+
+#include "slif.h"
 #include "slif_dump.h"
 
 #define BUFFER_MAX (SZ_64)
@@ -64,7 +80,7 @@ static void slif_dump_request_dump(int id)
 	values[1] = 0;
 	values[2] = 0;
 	ret = vts_start_ipc_transaction(dump_dev_vts, dump_data_vts,
-			VTS_IRQ_AP_TEST_COMMAND, &values, 0, 1);
+			VTS_IRQ_AP_COMMAND, &values, 0, 1);
 	if (ret < 0)
 		dev_err(dump_dev_vts, "Enable_debuglog ipc transaction failed\n");
 }

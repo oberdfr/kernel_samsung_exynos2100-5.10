@@ -402,6 +402,7 @@ void vts_set_sel_pad(struct device *dev, int enable)
 		vts_dev_info(dev, "SEL_PDM(0x%08x)\n", ctrl);
 	}
 }
+EXPORT_SYMBOL(vts_set_sel_pad);
 #elif defined(CONFIG_SOC_S5E8825)
 #define SLIF_SEL_PAD_AUD_BASE	(0x1014) /* 0x15511010 */
 #define SLIF_SEL_ENABLE_DMIC_IF (0x1000) /* 0x15511014 */
@@ -431,8 +432,8 @@ void vts_set_sel_pad(struct device *dev, int enable)
 		vts_dev_info(dev, "SEL_PAD_AUD(0x%08x)\n", ctrl);
 	}
 }
-#endif
 EXPORT_SYMBOL(vts_set_sel_pad);
+#endif
 
 #define VTS_SYS_CLOCK_MAX	(393216000)
 /* #define VTS_SYS_CLOCK		(66000000) */	/* 66M */
