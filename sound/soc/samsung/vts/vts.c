@@ -2135,7 +2135,11 @@ static int vts_runtime_suspend(struct device *dev)
 			data->shared_info->vendor_data[1],
 			data->shared_info->vendor_data[2]);
 
+#if defined(CONFIG_SOC_EXYNOS2100)
+		vts_cpu_enable(false);
+#else
 		vts_cpu_enable(dev, false);
+#endif
 
 		if (data->irq_state) {
 			vts_irq_enable(pdev, false);
@@ -3148,7 +3152,7 @@ static int samsung_vts_probe(struct platform_device *pdev)
 		result = PTR_ERR(data->dmic_if1_base);
 		goto error;
 	}
-#if defined(CONFIG_SOC_S5E8825)
+#if (defined(CONFIG_SOC_S5E8825) || defined(CONFIG_SOC_EXYNOS2100))
 	data->gpr_base = samsung_vts_devm_request_and_map(pdev,
 		"gpr", NULL, NULL);
 	if (IS_ERR(data->gpr_base)) {

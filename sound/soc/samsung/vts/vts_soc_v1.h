@@ -175,6 +175,9 @@
 #define SOUND_MODEL_SVOICE_OFFSET	(0x32B00)
 #endif
 
+#define VTS_ERR_HARD_FAULT	(0x1)
+#define VTS_ERR_BUS_FAULT	(0x3)
+
 /* VTS firmware version information offset */
 #if IS_ENABLED(CONFIG_SOC_EXYNOS2100)
 #define VTSFW_VERSION_OFFSET	(0xac)
@@ -230,5 +233,24 @@
 #define VTS_CPU_IN      (0x3664)
 #define VTS_CPU_IN_SLEEPING_MASK		(0x00000002)
 #endif
+
+#define VTS_DMIC_CLK_MUX	(49152000)
+#define SLIF_DMIC_CLK_MUX	(73728000)
+#define DUAL_DMIC_CLK_MUX	(49152000)
+
+#define VTS_DUMP_MAGIC "VTS-LOG0" // 0x30474F4C2D535456ull /* VTS-LOG0 */
+#define VTS_SYS_CLOCK_MAX	(393216000)
+#define VTS_SYS_CLOCK		(196608000)	/* 200M */
+
+/* DRAM for copying VTS firmware logs */
+#define LOG_BUFFER_BYTES_MAX	   (0x2000)
+#define VTS_SRAMLOG_MSGS_OFFSET    (0x59000)
+#define VTS_SRAMLOG_SIZE_MAX	   (SZ_2K)  /* SZ_2K : 0x800 */
+#define VTS_SRAM_TIMELOG_SIZE_MAX  (SZ_1K)
+#define VTS_SRAM_EVENTLOG_SIZE_MAX (VTS_SRAMLOG_SIZE_MAX - VTS_SRAM_TIMELOG_SIZE_MAX)  /* SZ_2K : 0x800 */
+
+#define VTS_TRIGGERED_TIMEOUT_MS (5000)
+
+#define VTS_ITMON_NAME "VTS"
 
 #endif /* __SND_SOC_VTS_DEP_SOC_V1_H */
